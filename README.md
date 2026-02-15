@@ -101,35 +101,34 @@ This makes it easy to decide whether the system is healthy or under pressure.
 Every run appends a timestamped section to the log file:
 
 ```bash
-======================================
-System Audit: <date>
-======================================
+===========================================
+System Audit: 2026-02-15 20:32:18 (Example)
+===========================================
 
 [CPU]
 Total CPUs: 8
-Model: Intel(R) Core(TM) i5-8365U CPU @ 1.60GHz
+Model: Intel Core i5 Series
 Threads per Core: 2
 Cores per Socket: 4
 
 [MEMORY]
-Total: 8 GiB
-Used: 4.6 GiB
-Free: 2.3 GiB
-Available: 3.1 GiB
-Usage: 58%
-Status: Healthy
+Memory Usage Details:
+               total        used        free      shared  buff/cache   available
+Mem:           8.0Gi       3.0Gi       4.0Gi       7.0Mi       400Mi       4.5Gi
+Swap:          2.0Gi          0B       2.0Gi
+[INFO] Memory usage is healthy: 39%
 
 [SWAP]
-Total: 2 GiB
-Used: 0 GiB
-
-[SYSTEM]
-Uptime: 12 hours 14 minutes
-Running Processes: 55
+Total Swap: 2 GB
+Used Swap: 0 GB
 
 [NETWORK]
-Interface: localhost
-Status: Active
+IP Address: localhost (127.0.0.1)
+
+[SYSTEM]
+Hostname: local-machine
+Uptime: ~1 day
+Running Processes: ~40
 
 [INFO] System metrics collected successfully.
 Log written to: logs/system_monitor.log
