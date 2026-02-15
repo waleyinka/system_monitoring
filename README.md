@@ -104,6 +104,35 @@ Every run appends a timestamped section to the log file:
 ======================================
 System Audit: <date>
 ======================================
+
+[CPU]
+Total CPUs: 8
+Model: Intel(R) Core(TM) i5-8365U CPU @ 1.60GHz
+Threads per Core: 2
+Cores per Socket: 4
+
+[MEMORY]
+Total: 8 GiB
+Used: 4.6 GiB
+Free: 2.3 GiB
+Available: 3.1 GiB
+Usage: 58%
+Status: Healthy
+
+[SWAP]
+Total: 2 GiB
+Used: 0 GiB
+
+[SYSTEM]
+Uptime: 12 hours 14 minutes
+Running Processes: 55
+
+[NETWORK]
+Interface: localhost
+Status: Active
+
+[INFO] System metrics collected successfully.
+Log written to: logs/system_monitor.log
 ```
 
 This creates a running history instead of overwriting previous checks.
