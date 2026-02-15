@@ -22,7 +22,7 @@ Each time the script runs, it performs a lightweight system audit that:
  - Checks memory usage and calculates how much is being used
  - Writes results into a structured log file
  - Displays color coded feedback in the terminal
- - Raises alerts when memory crosses a defined threshold
+ - Raises alerts when memory crosses a defined threshold  
  - Captures network details, uptime, and running process counts
 
 Over time, the logs form a simple history of how the system behaves.
