@@ -3,14 +3,33 @@
 # Define the path to your folder
 set -euo pipefail
 
-# Load variables from config.sh
+# Load configuration variables
 source ./config.sh
+
+# -----------------------------
+# Collect System Information
+# -----------------------------
+CPU_TOTAL=$(lscpu | awk -F: '/^CPU\(s\)/ {gsub(/^[ \t]+/, "", $2); print $2; exit}')
+CPU_MODEL=$(lscpu | awk -F: '/^Model name/ {gsub(/^[ \t]+/, "", $2); print $2; exit}')
+THREADS_PER_CORE=$(lscpu | awk -F: '/^Thread\(s\) per core/ {gsub(/^[ \t]+/, "", $2); print $2; exit}')
+CORES_PER_SOCKET=$(lscpu | awk -F: '/^Core\(s\) per socket/ {gsub(/^[ \t]+/, "", $2); print $2; exit}')
+
+TOTAL_MEMORY=$(free -m | awk '/^Mem:/{print $2}')
+USED_MEMORY=$(free -m | awk '/^Mem:/{print $3}')
+FREE_MEMORY=$(free -m | awk '/^Mem:/{print $4}')
+
+PERCENTAGE_USED=$(( USED_MEMORY * 100 / TOTAL_MEMORY ))
+
+SWAP_TOTAL=$(free -m | awk '/^Swap:/{print $2}')
+SWAP_USED=$(free -m | awk '/^Swap:/{print $3}')
+
+UPTIME_PRETTY=$(uptime -p | sed 's/^up //')
+PROC_COUNT=$(ps -u "$USER" --no-header | wc -l)
+
 
 # -----------------------------
 # Ensure Log Directory and File Exists
 # -----------------------------
-
-# If log directory and file is local to the script, create it if it doesn't exist.
 if [ ! -d "$LOG_DIR" ]; then
     mkdir -p "$LOG_DIR"
 fi
