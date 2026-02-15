@@ -1,7 +1,7 @@
-# system_monitoring
 # Bash System Monitor
 
 *A Step by Step Introduction to Practical Bash Scripting*
+
 
 ## Overview
 
@@ -12,7 +12,6 @@ The script collects system information, evaluates memory usage, logs results, an
 
 It is designed especially for learners who want to move from “I know a few commands” to “I can build something useful with Bash.”
 
----
 
 ## What This Project Does
 
@@ -27,11 +26,10 @@ Each time the script runs, it performs a lightweight system audit that:
 
 Over time, the logs form a simple history of how the system behaves.
 
----
 
 ## Project Structure
 
-```
+```bash
 project-folder/
 │
 ├── config.sh
@@ -39,9 +37,7 @@ project-folder/
 └── logs/
 ```
 
----
-
-### config.sh
+### `config.sh`
 
 This file holds everything I might want to change without touching the main logic.
 
@@ -55,14 +51,9 @@ It defines:
 
 Keeping these values separate made the script easier to reason about and safer to modify.
 
----
+### `monitor.sh`
 
-### monitor.sh
-
-This is the main script that performs the system check.
-
-It:
-
+This is the main script that performs the system check. It:
  - Loads values from the configuration file
  - Ensures required folders and files exist before running
  - Collects CPU and memory data
@@ -72,7 +63,6 @@ It:
 
 This is where everything comes together.
 
----
 
 ## How It Works
 
@@ -82,8 +72,6 @@ The script begins by sourcing `config.sh` so all settings are available.
 
 This keeps the logic clean and avoids hardcoding values in multiple places.
 
----
-
 ### 2. Prepare the Environment
 
 Before doing anything else, the script checks whether the log directory and file already exist.
@@ -91,12 +79,9 @@ If not, it creates them automatically.
 
 This means the script can run safely even on a brand new setup.
 
----
-
 ### 3. Capture System Information
 
 The monitor gathers data using built in Linux tools:
-
  - `lscpu` for processor details
  - `free` for memory statistics
  - `ip` for network information
@@ -105,29 +90,23 @@ The monitor gathers data using built in Linux tools:
 
 Each command contributes a small but useful part of the system snapshot.
 
----
-
 ### 4. Calculate Memory Usage
 
 Memory usage is calculated as a percentage of used versus total memory.
 
 This makes it easy to decide whether the system is healthy or under pressure.
 
----
-
 ### 5. Log Results
 
 Every run appends a timestamped section to the log file:
 
-```
+```bash
 ======================================
 System Audit: <date>
 ======================================
 ```
 
 This creates a running history instead of overwriting previous checks.
-
----
 
 ### 6. Alert When Threshold Is Exceeded
 
@@ -139,7 +118,6 @@ If memory usage rises above the configured threshold, the script:
 
 This turns the script into an active monitor rather than just a report.
 
----
 
 ## Running the Project
 
@@ -157,7 +135,6 @@ Run the monitor manually:
 
 After running, check the logs directory to see the generated output.
 
----
 
 ## Automating the Monitor
 
@@ -165,13 +142,12 @@ To run the script automatically, schedule it using cron.
 
 Example: run every 10 minutes
 
-```
+```bash
 */10 * * * * /path/to/monitor.sh
 ```
 
 Now the system checks itself quietly in the background.
 
----
 
 ## Example Use Cases
 
@@ -180,7 +156,6 @@ Now the system checks itself quietly in the background.
  - Exploring how Linux tools can be composed into workflows
  - Building confidence before tackling larger automation tasks
 
----
 
 ## What I Learned From This
 
@@ -192,7 +167,6 @@ Now the system checks itself quietly in the background.
 
 Most importantly, I learned that Bash becomes far less intimidating once you use it to build something that matters to you.
 
----
 
 ## Possible Improvements
 
@@ -202,7 +176,6 @@ Most importantly, I learned that Bash becomes far less intimidating once you use
  - Generate periodic summary reports
  - Expand checks to include additional system metrics
 
----
 
 ## Final Thoughts
 
